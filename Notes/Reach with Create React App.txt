@@ -1,0 +1,4 @@
+Install 1st Node.js, npx and npm.
+
+
+npx create-react-app my-app
