@@ -1,4 +1,10 @@
 Install 1st Node.js, npx and npm.
 
+Comands to run the app
 
 npx create-react-app my-app
+yarn add sass
+npm install react-router-dom@6
+yarn add firebase
+
+
