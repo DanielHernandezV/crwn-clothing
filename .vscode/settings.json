@@ -1,0 +1,5 @@
+{
+    "prettier.bracketSameLine": false,
+    "prettier.requireConfig": false,
+    "prettier.useEditorConfig": false
+}
