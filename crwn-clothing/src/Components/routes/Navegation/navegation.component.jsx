@@ -1,29 +1,28 @@
 import { Fragment } from "react";
-import { Outlet,Link } from "react-router-dom";
-import {ReactComponent as CrwnLogo} from '../../../assets/crown.svg'
-import './navegation.style.scss'
+import { Outlet, Link } from "react-router-dom";
+import { ReactComponent as CrwnLogo } from "../../../assets/crown.svg";
+import "./navegation.style.scss";
 const NavBar = () => {
-return(
-
+  return (
     <Fragment>
-        <div  className="navigation">
-            <Link className="logo-container" to='/'> <CrwnLogo className="logo"/></Link>
-           
-            <div className="nav-links-container">
-                <Link className="nav-link" to='/shop'>
-                    SHOP
-                </Link>
-                <Link className="nav-link" to='/sign-in'>
-                    SIGN IN
-                </Link>
-            </div>
-            
+      <div className="navigation">
+        <Link className="logo-container" to="/">
+          {" "}
+          <CrwnLogo className="logo" />
+        </Link>
 
-           
+        <div className="nav-links-container">
+          <Link className="nav-link" to="/shop">
+            SHOP
+          </Link>
+          <Link className="nav-link" to="/auth">
+            SIGN IN
+          </Link>
         </div>
-        <Outlet/>
+      </div>
+      // to display the code in the children routes
+      <Outlet />
     </Fragment>
-
-)
-}
+  );
+};
 export default NavBar;

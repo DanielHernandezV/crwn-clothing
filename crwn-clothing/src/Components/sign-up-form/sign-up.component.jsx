@@ -1,4 +1,3 @@
-import { confirmPasswordReset } from "firebase/auth";
 import { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import "./sign-up-form.style.scss";
@@ -49,7 +48,7 @@ const SingUpForm = () => {
   return (
     <div className="sign-up-container">
       <h2>Dont have an account</h2>
-      <span>SignIn With your email and password</span>
+      <span>SignUp With your email and password</span>
       <form onSubmit={handlerSubmit}>
         <FormInput
           label="Display Name"
@@ -86,9 +85,7 @@ const SingUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         ></FormInput>
-        <Button type="submit" buttonType="google">
-          Sign Up
-        </Button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
