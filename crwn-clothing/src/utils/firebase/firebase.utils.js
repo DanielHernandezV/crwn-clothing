@@ -5,6 +5,7 @@ import {
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -30,16 +31,41 @@ export const auth = getAuth();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
-export const signInWithGoogleRedirect = () =>
-  signInWithRedirect(auth, googleProvider);
+/* export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider); */
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAth) => {
+export const createUserDocumentFromAuth = async (
+  userAth,
+  aditionalInformation = {}
+) => {
   const userDocRef = doc(db, "users", userAth.uid);
-  console.log(userDocRef);
+
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
+
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAth;
+    const createdAt = new Date();
+
+    await setDoc(userDocRef, {
+      displayName,
+      email,
+      createdAt,
+      ...aditionalInformation,
+    });
+  }
+  return userDocRef;
+};
+
+export const createAthUserWithEmailAndPassword = async (email, password) => {
+  if (!(email && password)) return;
+
+  return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+/* const createUsuario =async(userDocRef,usuario)=>{
+  const userSnapshot = await getDoc(userDocRef);
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAth;
@@ -50,5 +76,6 @@ export const createUserDocumentFromAuth = async (userAth) => {
       console.log("error creating the user", error.message);
     }
   }
-  return userDocRef;
-};
+
+
+} */
