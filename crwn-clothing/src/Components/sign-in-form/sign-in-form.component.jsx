@@ -3,10 +3,7 @@ import { useState } from "react";
 import Button from "../button/button.component";
 import { signInEmailPassword } from "../../utils/firebase/firebase.utils";
 
-import {
-  createUserDocumentFromAuth,
-  signInWithGooglePopup,
-} from "../../utils/firebase/firebase.utils";
+import { signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
 
 import "./sign-in-form.style.scss";
 
@@ -39,7 +36,7 @@ const SingInForm = () => {
     event.preventDefault();
 
     try {
-      const { user } = await signInEmailPassword(email, password);
+      await signInEmailPassword(email, password);
 
       resetFormFields();
     } catch (error) {
