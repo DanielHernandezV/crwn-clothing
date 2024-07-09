@@ -1,12 +1,12 @@
 import SingUpForm from "../../sign-up-form/sign-up.component";
 import SingInForm from "../../sign-in-form/sign-in-form.component";
-import "./authentication.style.scss";
+import { AuthenticationContainer } from "./authentication.style";
 const Authentication = () => {
   return (
-    <div className="authentication-container">
+    <AuthenticationContainer>
       <SingInForm />
       <SingUpForm />
-    </div>
+    </AuthenticationContainer>
   );
 };
 export default Authentication;

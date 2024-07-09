@@ -1,12 +1,8 @@
-import { CategoriesContext } from "../../../context/categories.context";
-import { useContext } from "react";
 import Category from "../category/category.component";
 import { Routes, Route } from "react-router-dom";
 import CategoriesPreview from "../categories-preview/categories-preview.component";
-import "./shop.style.scss";
-const Shop = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
 
+const Shop = () => {
   return (
     <Routes>
       <Route index element={<CategoriesPreview />} />

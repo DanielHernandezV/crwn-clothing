@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
 const addCartItemHelper = (cartItems, productToAdd) => {
-  const theItem = cartItems.find((item) => item.id == productToAdd.id);
+  const theItem = cartItems.find((item) => item.id === productToAdd.id);
 
   if (theItem)
     //updating cart
@@ -12,7 +12,7 @@ const addCartItemHelper = (cartItems, productToAdd) => {
   return [...cartItems, { quantity: 1, ...productToAdd }];
 };
 const deleteOneItemHelper = (cartItems, productToDelete) => {
-  const theItem = cartItems.find((item) => item.id == productToDelete.id);
+  const theItem = cartItems.find((item) => item.id === productToDelete.id);
 
   if (theItem.quantity > 1)
     return cartItems.map((item) =>

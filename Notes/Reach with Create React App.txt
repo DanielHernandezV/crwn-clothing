@@ -6,5 +6,4 @@ npx create-react-app my-app
 yarn add sass
 npm install react-router-dom@6
 yarn add firebase
-
-
+yarn add styled-components
