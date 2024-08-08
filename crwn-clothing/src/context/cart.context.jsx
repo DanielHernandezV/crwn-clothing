@@ -1,5 +1,9 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useReducer } from "react";
 
+//util function
+import { createAction } from "../utils/reducer/reducer.utils";
+
+//Helpers functions
 const addCartItemHelper = (cartItems, productToAdd) => {
   const theItem = cartItems.find((item) => item.id === productToAdd.id);
 
@@ -38,21 +42,52 @@ export const CartContext = createContext({
   deleteItemFromCart: () => {},
 });
 
+const INITIAL_STATE = {
+  cartItems: [],
+  cartCount: 0,
+  cartTotal: 0,
+  isCartOpen: false,
+};
+export const CART_ACTION_TYPES = {
+  UPDATE_CART: "UPDATE_CART",
+  SET_IS_CART_OPEN: "SET_IS_CART_OPEN",
+};
+
+// reducer should not handle business logic
+const cartReducer = (state, action) => {
+  const { payload, type } = action;
+
+  switch (type) {
+    case CART_ACTION_TYPES.UPDATE_CART: {
+      return {
+        ...state,
+        ...payload,
+      };
+    }
+    case CART_ACTION_TYPES.SET_IS_CART_OPEN: {
+      return {
+        ...state,
+        isCartOpen: payload,
+      };
+    }
+    default:
+      throw new Error(`Unhandle type of ${type} in cartReducer`);
+  }
+};
+
 const CartProvider = ({ children }) => {
+  const [{ cartItems, cartCount, cartTotal, isCartOpen }, dispach] = useReducer(
+    cartReducer,
+    INITIAL_STATE
+  );
+  /*  
+  USING useState and useEffect
   const [isCartOpen, setIsCartOpen] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
-  const addCartItem = (productToAdd) => {
-    const theproduct = addCartItemHelper(cartItems, productToAdd);
-    setCartItems(theproduct);
-  };
-  const deleteOneProduct = (productToDelete) => {
-    setCartItems(deleteOneItemHelper(cartItems, productToDelete));
-  };
-  const deleteItemFromCart = (productToDelete) => {
-    setCartItems(deleteItemHelper(cartItems, productToDelete));
-  };
+
+
 
   useEffect(() => {
     const quantity = cartItems.reduce(
@@ -70,14 +105,43 @@ const CartProvider = ({ children }) => {
     setCartTotal(totalprice);
   }, [cartItems]);
 
-  useEffect(() => {
-    const quantity = cartItems.reduce(
+ */
+
+  //Update fun helper
+  const updateCartReducer = (newCartItems) => {
+    const newCartCount = newCartItems.reduce(
       (acom, value) => acom + value.quantity,
       0
     );
-    setCartCount(quantity);
-  }, [cartItems]);
+    const newCartTotal = newCartItems.reduce(
+      (acom, item) => acom + item.quantity * item.price,
+      0
+    );
+    dispach(
+      createAction(CART_ACTION_TYPES.UPDATE_CART, {
+        cartItems: newCartItems,
+        cartCount: newCartCount,
+        cartTotal: newCartTotal,
+      })
+    );
+  };
 
+  const addCartItem = (productToAdd) => {
+    const newCartItems = addCartItemHelper(cartItems, productToAdd);
+    updateCartReducer(newCartItems);
+  };
+  const deleteOneProduct = (productToDelete) => {
+    const newCartItems = deleteOneItemHelper(cartItems, productToDelete);
+    updateCartReducer(newCartItems);
+  };
+  const deleteItemFromCart = (productToDelete) => {
+    const newCartItems = deleteItemHelper(cartItems, productToDelete);
+    updateCartReducer(newCartItems);
+  };
+
+  const setIsCartOpen = (isOpen) => {
+    dispach(createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, isOpen));
+  };
   const value = {
     isCartOpen,
     setIsCartOpen,
