@@ -125,7 +125,6 @@ const CartProvider = ({ children }) => {
       })
     );
   };
-
   const addCartItem = (productToAdd) => {
     const newCartItems = addCartItemHelper(cartItems, productToAdd);
     updateCartReducer(newCartItems);

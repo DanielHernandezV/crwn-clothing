@@ -8,13 +8,17 @@ import {
   NavLinkContainer,
   NavLink,
 } from "./navegation.style";
-import { UserContext } from "../../../context/user.context";
+
 import { useContext } from "react";
 import CartIcon from "../../cart-icon/cart-icon.component";
 import CartDropdown from "../../cart-dropdown/cart-dropdown.component";
 import { CartContext } from "../../../context/cart.context";
+
+//redux
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../store/user/user.selector";
 const NavBar = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { isCartOpen } = useContext(CartContext);
 
   const signOutHandler = async () => {

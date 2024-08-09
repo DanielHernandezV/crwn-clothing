@@ -15,7 +15,7 @@ const DirectoryItem = ({ category }) => {
       onClick={() => onNavegateHandler("shop/" + title)}
       key={id}
     >
-      <BackgroundImage imageUrl={imageUrl} />
+      <BackgroundImage $image={imageUrl} />
 
       <Body>
         <h2>{title}</h2>
