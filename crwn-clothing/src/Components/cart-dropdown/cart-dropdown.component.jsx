@@ -5,11 +5,12 @@ import {
 } from "./cart-dropdown.style";
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item-component";
-import { useContext } from "react";
-import { CartContext } from "../../context/cart.context";
+
+import { selectCartItems } from "../../store/cart/cart.selector";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const CartDropdown = () => {
-  const { cartItems } = useContext(CartContext);
+  const cartItems = useSelector(selectCartItems);
   const navigate = useNavigate();
   const hanleClick = () => navigate("/check-out");
   return (
