@@ -76,7 +76,7 @@
 // };
 
 // const CartProvider = ({ children }) => {
-//   const [{ cartItems, cartCount, cartTotal, isCartOpen }, dispach] = useReducer(
+//   const [{ cartItems, cartCount, cartTotal, isCartOpen }, dispatch] = useReducer(
 //     cartReducer,
 //     INITIAL_STATE
 //   );
@@ -115,7 +115,7 @@
 //       (acom, item) => acom + item.quantity * item.price,
 //       0
 //     );
-//     dispach(
+//     dispatch(
 //       createAction(CART_ACTION_TYPES.UPDATE_CART, {
 //         cartItems: newCartItems,
 //         cartCount: newCartCount,
@@ -137,7 +137,7 @@
 //   };
 
 //   const setIsCartOpen = (isOpen) => {
-//     dispach(createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, isOpen));
+//     dispatch(createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, isOpen));
 //   };
 //   const value = {
 //     isCartOpen,

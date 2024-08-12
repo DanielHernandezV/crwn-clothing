@@ -8,11 +8,11 @@ import { setIsCartOpen } from "../../store/cart/cart.action";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 const CartIcon = () => {
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const cartCount = useSelector(selectCartCount);
   const isCartOpen = useSelector(selectIsCartOpen);
   const toggleHandler = () => {
-    dispach(setIsCartOpen(!isCartOpen));
+    dispatch(setIsCartOpen(!isCartOpen));
   };
   return (
     <CartIconContainer onClick={toggleHandler}>

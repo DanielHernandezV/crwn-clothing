@@ -10,12 +10,12 @@ import { selectCartItems } from "../../store/cart/cart.selector";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 const ProductCard = ({ product }) => {
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const { name, price, imageUrl } = product;
   const cartItems = useSelector(selectCartItems);
 
   const onClickhandler = () => {
-    dispach(addCartItem(cartItems, product));
+    dispatch(addCartItem(cartItems, product));
   };
 
   return (

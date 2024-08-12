@@ -13,7 +13,7 @@ import { setCurrentUser } from "./store/user/user.action";
 import { useDispatch } from "react-redux";
 
 const App = () => {
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unSubcribe = onAthStateChangedListener((user) => {
@@ -21,7 +21,7 @@ const App = () => {
         createUserDocumentFromAuth(user);
       }
 
-      dispach(setCurrentUser(user));
+      dispatch(setCurrentUser(user));
     });
     return unSubcribe;
   }, []);

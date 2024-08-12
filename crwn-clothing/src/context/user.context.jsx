@@ -42,10 +42,10 @@
 //   /*  const [currentUser, setCurrentUser] = useState(null); */
 
 //   //reducer
-//   const [{ currentUser }, dispach] = useReducer(userReducer, INITIAL_STATE);
+//   const [{ currentUser }, dispatch] = useReducer(userReducer, INITIAL_STATE);
 
 //   const setCurrentUser = (user) => {
-//     dispach(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user));
+//     dispatch(createAction(USER_ACTION_TYPES.SET_CURRENT_USER, user));
 //   };
 
 //   const value = { currentUser, setCurrentUser };

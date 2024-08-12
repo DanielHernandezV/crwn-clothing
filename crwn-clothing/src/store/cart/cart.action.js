@@ -3,7 +3,6 @@ import { CART_ACTION_TYPES } from "./cart.types";
 //Helpers functions
 const addCartItemHelper = (cartItems, productToAdd) => {
   const theItem = cartItems.find((item) => item.id === productToAdd.id);
-
   if (theItem)
     //updating cart
     return cartItems.map((item) =>
